@@ -70,7 +70,7 @@ class CD implements IF_UNIT
 		if( $branch ){
 			if( $branch === '\*' ){
 				//	Generate branches by instanced branch names.
-				$branches = self::Git()->Branches();
+				$branches = self::Git()->Branch()->List(); // Branches();
 			}else{
 				//	Generate branches by specified branch name.
 				$branches[] = $branch;
@@ -102,6 +102,11 @@ class CD implements IF_UNIT
 				//	...
 				if( $result = self::Git()->Push($remote, $branch_name, $force) ){
 					echo $result . "\n";
+
+					//	...
+					if( strpos($result, 'error: failed to push some refs to') ){
+						throw new Exception("git push was failed.");
+					}
 				}
 			}
 		}
