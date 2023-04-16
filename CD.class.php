@@ -91,7 +91,16 @@ class CD implements IF_UNIT
 
 				//	...
 				if( OP()->Request('debug') and ($commit_id_saved !== $commit_id_branch) ){
-					D($remote, $branch_name, $commit_id_file, $commit_id_saved, $commit_id_branch);
+                    $temp = [
+                        'PHP'        => PHP_VERSION,
+                        'current'    => getcwd(),
+                        'remote'     => $remote,
+                        'branch'     => $branch_name,
+                        'file path'  => $commit_id_file,
+                        'commit id saved'    => $commit_id_saved,
+                        'commit id current'  => $commit_id_branch,
+                    ];
+					D($temp);
 				}
 
 				//	...
