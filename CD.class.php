@@ -82,12 +82,19 @@ class CD implements IF_UNIT
 
 		//	Execute each remote name.
 		foreach( $remotes as $remote ){
+
 			//	Execute each branch name.
 			foreach( $branches as $branch_name ){
+
 				//	...
 				$commit_id_file   = self::CI()->GenerateFilename($branch_name);
 				$commit_id_saved  = file_get_contents($commit_id_file);
 				$commit_id_branch = self::Git()->CommitID($branch_name);
+
+				//	...
+				if( $branch_name !== $current_branch = self::Git()->CurrentBranch() ){
+					throw new \Exception("Does not match branch name. (specify={$branch_name}, current={$current_branch})");
+				}
 
 				//	...
 				if( OP()->Request('debug') and ($commit_id_saved !== $commit_id_branch) ){
