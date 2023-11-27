@@ -21,7 +21,6 @@ namespace OP\UNIT;
 /** use
  *
  */
-use Exception;
 use OP\IF_UNIT;
 use OP\OP_CORE;
 use OP\OP_CI;
@@ -80,6 +79,9 @@ class CD implements IF_UNIT
 			$branches[] = self::Git()->CurrentBranch();
 		}
 
+		//	Save current branch name.
+		$current_branch_name = self::Git()->CurrentBranch();
+
 		//	Execute each remote name.
 		foreach( $remotes as $remote ){
 
@@ -88,12 +90,27 @@ class CD implements IF_UNIT
 
 				//	...
 				$commit_id_file   = self::CI()->GenerateFilename($branch_name);
-				$commit_id_saved  = file_get_contents($commit_id_file);
 				$commit_id_branch = self::Git()->CommitID($branch_name);
 
 				//	...
+				if(!file_exists($commit_id_file) ){
+					OP()->Notice("Does not found this file. ($commit_id_file)");
+					continue;
+				}
+
+				//	...
+				$commit_id_saved  = file_get_contents($commit_id_file);
+
+				//	...
+				if(!self::Git()->Switch($branch_name) ){
+					OP()->Notice("git switch {$branch_name} was failed.");
+					continue;
+				}
+
+				//	...
 				if( $branch_name !== $current_branch = self::Git()->CurrentBranch() ){
-					throw new \Exception("Does not match branch name. (specify={$branch_name}, current={$current_branch})");
+					OP()->Notice("Does not match branch name. (specify={$branch_name}, current={$current_branch})");
+					continue;
 				}
 
 				//	...
@@ -112,7 +129,8 @@ class CD implements IF_UNIT
 
 				//	...
 				if( $commit_id_saved !== $commit_id_branch ){
-					throw new Exception("Does not match commit id. ({$commit_id_file}={$commit_id_saved}, {$branch_name}={$commit_id_branch})");
+					OP()->Notice("Does not match commit id. ({$commit_id_file}={$commit_id_saved}, {$branch_name}={$commit_id_branch})");
+					continue;
 				}
 
 				//	...
@@ -121,11 +139,15 @@ class CD implements IF_UNIT
 
 					//	...
 					if( strpos($result, 'error: failed to push some refs to') ){
-						throw new Exception("git push was failed.");
+						OP()->Notice("git push was failed.");
+						continue;
 					}
 				}
 			}
 		}
+
+		//	...
+		self::Git()->Switch($current_branch_name);
 	}
 
 	/** Init
