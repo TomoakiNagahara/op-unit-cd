@@ -76,11 +76,11 @@ class CD implements IF_UNIT
 			}
 		}else{
 			//	Generate branches by current branch name.
-			$branches[] = self::Git()->CurrentBranch();
+			$branches[] = self::Git()->Branch()->Current();
 		}
 
 		//	Save current branch name.
-		$current_branch_name = self::Git()->CurrentBranch();
+		$current_branch_name = self::Git()->Branch()->Current();
 
 		//	Execute each remote name.
 		foreach( $remotes as $remote ){
@@ -108,7 +108,7 @@ class CD implements IF_UNIT
 				}
 
 				//	...
-				if( $branch_name !== $current_branch = self::Git()->CurrentBranch() ){
+				if( $branch_name !== $current_branch = self::Git()->Branch()->Current() ){
 					OP()->Notice("Does not match branch name. (specify={$branch_name}, current={$current_branch})");
 					continue;
 				}
