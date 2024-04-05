@@ -40,11 +40,20 @@ class CD implements IF_UNIT
 	 */
 	use OP_CORE, OP_CI;
 
-	/** Automaticall
+	/** Automatically
 	 *
 	 * @created    2023-02-05
 	 */
 	static function Auto()
+	{
+		self::Single();
+	}
+
+	/** Single
+	 *
+	 * @created    2024-04-02
+	 */
+	static private function Single()
 	{
 		//	Init
 		$branches = [];
