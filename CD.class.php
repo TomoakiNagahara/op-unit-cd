@@ -46,6 +46,40 @@ class CD implements IF_UNIT
 	 */
 	static function Auto()
 	{
+		//	...
+		$git_root = OP()->MetaPath('git:/');
+
+		//	core
+		chdir( $git_root.'asset/core/' );
+		self::Single();
+
+		//	...
+		$list = [
+			'unit',
+			'layout',
+			'module',
+			'webpack',
+		];
+
+		//	...
+		foreach( $list as $dir ){
+			//	...
+			foreach( glob("{$git_root}/asset/{$dir}/*") as $path ){
+				//	...
+				chdir($path);
+
+				//	...
+				self::Single();
+
+				//	...
+				if( OP()->Notice()->Has() ){
+					return;
+				}
+			}
+		}
+
+		//	main
+		chdir( $git_root );
 		self::Single();
 	}
 
