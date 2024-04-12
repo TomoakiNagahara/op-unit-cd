@@ -1,7 +1,8 @@
 <?php
-/** op-unit-cd:/CD.class.php
+/** op-unit-cd:/CD_2023.trait.php
  *
  * @created    2023-02-05
+ * @moved      2024-04-12  CD.class.php --> CD_2023.trait.php
  * @version    1.0
  * @package    op-unit-cd
  * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
@@ -16,30 +17,23 @@ declare(strict_types=1);
 /** namespace
  *
  */
-namespace OP\UNIT;
+namespace OP\UNIT\CD;
 
 /** use
  *
  */
-use OP\IF_UNIT;
-use OP\OP_CORE;
-use OP\OP_CI;
 
 /** CD
  *
  * @created    2023-02-05
+ * @moved      2024-04-12  CD --> CD_2023
  * @version    1.0
- * @package    op-unit-empty
+ * @package    op-unit-cd
  * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright  Tomoaki Nagahara All right reserved.
  */
-class CD implements IF_UNIT
+trait CD_2023
 {
-	/** use
-	 *
-	 */
-	use OP_CORE, OP_CI;
-
 	/** Automatically
 	 *
 	 * @created    2023-02-05
@@ -205,7 +199,7 @@ class CD implements IF_UNIT
 	/** CI
 	 *
 	 * @created    2023-02-17
-	 * @return     CI
+	 * @return    \OP\UNIT\CI
 	 */
 	static function CI()
 	{
@@ -215,7 +209,7 @@ class CD implements IF_UNIT
 	/** Git
 	 *
 	 * @created    2023-02-05
-	 * @return     Git
+	 * @return    \OP\UNIT\Git
 	 */
 	static function Git()
 	{
