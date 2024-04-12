@@ -72,8 +72,8 @@ class CD implements IF_UNIT
 				self::Single();
 
 				//	...
-				if( OP()->Notice()->Has() ){
-					return;
+				if( $notice = OP()->Notice()->Pop() ){
+					self::Display($notice['message']);
 				}
 			}
 		}
