@@ -221,4 +221,24 @@ class CD implements IF_UNIT
 	{
 		return OP()->Unit('Git');
 	}
+
+	/** Display
+	 *
+	 */
+	static function Display(string $message)
+	{
+		//	...
+		static $_display;
+
+		//	...
+		if( empty($_display) ){
+			$_display = OP()->Request('display');
+		}
+
+		//	...
+		if( $_display ){
+			$meta_path = OP()->MetaPath( getcwd() );
+			echo "{$meta_path} - {$message}\n";
+		}
+	}
 }
