@@ -50,4 +50,42 @@ trait CD_2024
 			OP()->Notice($e);
 		}
 	}
+
+	/** Check Git Commit Id
+	 *
+	 */
+	static function CheckGitCommitId()
+	{
+		//	...
+		foreach( PathList() as $path ){
+			//	...
+			$meta_path = OP()->MetaPath($path);
+
+			//	...
+			chdir($path);
+
+			//	...
+			if( file_exists('ci.sh') or file_exists('.ci.sh') ){
+				//	OK
+			}else{
+				continue;
+			}
+
+			//	...
+			$branch = OP()->Request('branch') ?? self::Git()->Branch()->Current();
+
+			//	Get saved commit ID from file.
+			$file_name = self::CI()->GenerateFilename($branch);
+			if(!file_exists($file_name) ){
+				throw new \Exception("Does not found this file. ($meta_path, $file_name)");
+			}
+			$commit_id_saved = file_get_contents($file_name);
+
+			//	Checking correct commit ID.
+			$commit_id = self::Git()->CommitID($branch);
+			if( $commit_id_saved !== $commit_id ){
+				throw new \Exception("Does not match commit id. ({$meta_path}, {$file_name}={$commit_id_saved}, {$branch}={$commit_id})");
+			}
+		}
+	}
 }
