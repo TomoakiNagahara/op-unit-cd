@@ -182,4 +182,14 @@ trait CD_2024
 		//	...
 		return $io;
 	} // For git diff solution.
+
+	/** Git
+	 *
+	 * @created    2023-02-05
+	 * @return    \OP\UNIT\Git
+	 */
+	static function Git()
+	{
+		return OP()->Unit('Git');
+	}
 }
