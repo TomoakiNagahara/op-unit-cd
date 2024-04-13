@@ -156,4 +156,14 @@ trait CD_2024
 			echo $result ? "\n{$result}\n": null;
 		}
 	}
+
+	/** CI
+	 *
+	 * @created    2023-02-17
+	 * @return    \OP\UNIT\CI
+	 */
+	static function CI()
+	{
+		return OP()->Unit('CI');
+	}
 }
