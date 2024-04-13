@@ -38,4 +38,16 @@ require_once(__DIR__.'/function/PathList.php');
  */
 trait CD_2024
 {
+	/** Automatically
+	 *
+	 */
+	static function Auto()
+	{
+		try{
+			self::CheckGitCommitId();
+			self::PushGitRepository();
+		}catch( \Throwable $e ){
+			OP()->Notice($e);
+		}
+	}
 }
