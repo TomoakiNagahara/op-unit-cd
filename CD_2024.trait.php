@@ -38,4 +38,16 @@ require_once(__DIR__.'/function/PathList.php');
  */
 trait CD_2024
 {
+	/**	Automatically push all submodules individually.
+	 *
+	 */
+	static function Auto()
+	{
+		try{
+			self::CheckGitCommitId();
+			self::PushGitRepository();
+		}catch( \Throwable $e ){
+			OP()->Notice($e);
+		}
+	}
 }
