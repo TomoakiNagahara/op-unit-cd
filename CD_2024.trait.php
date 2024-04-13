@@ -103,4 +103,35 @@ trait CD_2024
 			*/
 		}
 	}
+
+	/** Push Git Repository
+	 *
+	 */
+	static function PushGitRepository()
+	{
+		//	...
+		foreach( PathList() as $path ){
+			//	...
+			chdir($path);
+
+			//	...
+			if( file_exists('ci.sh') or file_exists('.ci.sh') ){
+				//	OK
+			}else{
+				continue;
+			}
+
+			//	...
+			$remote = OP()->Request('remote') ?? 'origin';
+			$branch = OP()->Request('branch') ?? self::Git()->Branch()->Current();
+			$force  = OP()->Request('force' ) ?? false;
+
+			//	...
+			if( $result = self::Git()->Push($remote, $branch, $force) ){
+				$meta_path = OP()->MetaPath($path);
+				echo $meta_path . "\n";
+				echo $result . "\n\n";
+			}
+		}
+	}
 }
