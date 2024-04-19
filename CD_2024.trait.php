@@ -130,7 +130,7 @@ trait CD_2024
 			//	...
 			$remote = OP()->Request('remote') ?? 'origin';
 			$branch = OP()->Request('branch') ?? self::Git()->Branch()->Current();
-			$force  = OP()->Request('force' ) ?? false;
+			$force  = OP()->Request('force' ) ?  true: false;
 
 			//	...
 			if( $result = self::Git()->Push($remote, $branch, $force) ){
