@@ -111,6 +111,12 @@ trait CD_2024
 	{
 		//	...
 		foreach( PathList() as $path ){
+
+			//	...
+			if(!is_dir($path) ){
+				continue;
+			}
+
 			//	...
 			chdir($path);
 
