@@ -58,11 +58,17 @@ trait CD_2024
 	{
 		//	...
 		foreach( PathList() as $path ){
+
 			//	...
-			$meta_path = OP()->MetaPath($path);
+			if(!is_dir($path) ){
+				continue;
+			}
 
 			//	...
 			chdir($path);
+
+			//	...
+			$meta_path = OP()->MetaPath($path);
 
 			//	...
 			if( file_exists('ci.sh') or file_exists('.ci.sh') ){
