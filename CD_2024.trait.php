@@ -180,14 +180,4 @@ trait CD_2024
 		//	...
 		return $io;
 	} // For git diff solution.
-
-	/** CI
-	 *
-	 * @created    2023-02-17
-	 * @return    \OP\UNIT\CI
-	 */
-	static function CI()
-	{
-		return OP()->Unit('CI');
-	}
 }
