@@ -33,4 +33,14 @@ trait CD
 	{
 		return OP()->Unit('CI');
 	}
+
+	/** Git
+	 *
+	 * @created    2023-02-05
+	 * @return    \OP\UNIT\Git
+	 */
+	static private function Git()
+	{
+		return OP()->Unit('Git');
+	}
 }
