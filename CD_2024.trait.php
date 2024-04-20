@@ -8,7 +8,7 @@
  * @copyright  Tomoaki Nagahara All right reserved.
  */
 
- /** Declare strict
+/** Declare strict
  *
  */
 declare(strict_types=1);
@@ -67,8 +67,10 @@ trait CD_2024
 			//	...
 			chdir($path);
 
+			/*
 			//	...
 			$meta_path = OP()->MetaPath($path);
+			*/
 
 			//	...
 			if( file_exists('ci.sh') or file_exists('.ci.sh') ){
@@ -77,6 +79,12 @@ trait CD_2024
 				continue;
 			}
 
+			//	...
+			if( self::_CheckGitCommitId() ){
+				return;
+			}
+
+			/*
 			//	...
 			$branch = OP()->Request('branch') ?? self::Git()->Branch()->Current();
 
@@ -92,6 +100,7 @@ trait CD_2024
 			if( $commit_id_saved !== $commit_id ){
 				throw new \Exception("Does not match commit id. ({$meta_path}, {$file_name}={$commit_id_saved}, {$branch}={$commit_id})");
 			}
+			*/
 		}
 	}
 }
