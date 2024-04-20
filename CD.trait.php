@@ -24,4 +24,13 @@ namespace OP\UNIT\CD;
 
 trait CD
 {
+	/** CI
+	 *
+	 * @created    2023-02-17
+	 * @return    \OP\UNIT\CI
+	 */
+	static private function CI()
+	{
+		return OP()->Unit('CI');
+	}
 }
