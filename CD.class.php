@@ -8,7 +8,7 @@
  * @copyright  Tomoaki Nagahara All right reserved.
  */
 
- /** Declare strict
+/** Declare strict
  *
  */
 declare(strict_types=1);
@@ -28,6 +28,7 @@ use OP\IF_UNIT;
 /** Include
  *
  */
+require_once(__DIR__.'/CD.trait.php');
 require_once(__DIR__.'/CD_2024.trait.php');
 
 /** CD
@@ -40,5 +41,5 @@ require_once(__DIR__.'/CD_2024.trait.php');
  */
 class CD implements IF_UNIT
 {
-	use OP_CORE, OP_UNIT, CD\CD_2024;
+	use OP_CORE, OP_UNIT, CD\CD, CD\CD_2024;
 }
