@@ -23,6 +23,7 @@ $git_root = OP()->MetaPath('git:/');
 
 //	...
 $_list[] = $git_root.'asset/core/';
+$_list[] = $git_root.'asset/develop/';
 
 //	...
 $temp = [
