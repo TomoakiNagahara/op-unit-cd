@@ -141,14 +141,27 @@ trait CD_2024
 			}
 
 			//	...
-			if( $result = self::Git()->Push($remote, $branch, $force) ){
+			$result = '';
+			if( self::Git()->Push($remote, $branch, $force, $result) ){
 				//	Success
-				echo is_bool($result) ? null: $result;
 			}else{
-				$meta_path = OP()->MetaPath($path);
-				echo $meta_path . "\n";
-				echo $result . "\n\n";
+				//	Failed
+				if( strpos($result, "[rejected]        {$branch} -> {$branch} (non-fast-forward)") ){
+					//	rejected
+					$path   = OP()->MetaPath($path);
+					$result = "{$path} [rejected] {$branch} -> {$branch} (non-fast-forward)";
+				}
 			}
+			//	...
+			echo $result ? "\n{$result}\n": null;
+
+			//	...
+			$pushed_flag = true;
+		}
+
+		//	...
+		if( $pushed_flag ?? null ){
+			echo "\n";
 		}
 	}
 }
