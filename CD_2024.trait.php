@@ -134,6 +134,9 @@ trait CD_2024
 
 			//	...
 			if( $result = self::Git()->Push($remote, $branch, $force) ){
+				//	Success
+				echo is_bool($result) ? null: $result;
+			}else{
 				$meta_path = OP()->MetaPath($path);
 				echo $meta_path . "\n";
 				echo $result . "\n\n";
