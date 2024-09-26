@@ -154,14 +154,6 @@ trait CD_2024
 			}
 			//	...
 			echo $result ? "\n{$result}\n": null;
-
-			//	...
-			$pushed_flag = true;
-		}
-
-		//	...
-		if( $pushed_flag ?? null ){
-			echo "\n";
 		}
 	}
 }
