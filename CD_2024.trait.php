@@ -110,6 +110,9 @@ trait CD_2024
 	static function PushGitRepository()
 	{
 		//	...
+		require_once(__DIR__.'/function/isCanPushToGithub.php');
+
+		//	...
 		foreach( PathList() as $path ){
 
 			//	...
@@ -131,6 +134,11 @@ trait CD_2024
 			$remote = OP()->Request('remote') ?? 'origin';
 			$branch = OP()->Request('branch') ?? self::Git()->Branch()->Current();
 			$force  = OP()->Request('force' ) ?  true: false;
+
+			//	...
+			if(!isCanPushToGithub($remote, $branch) ){
+				continue;
+			}
 
 			//	...
 			if( $result = self::Git()->Push($remote, $branch, $force) ){
