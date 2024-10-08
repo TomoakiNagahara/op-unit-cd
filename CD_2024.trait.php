@@ -137,12 +137,12 @@ trait CD_2024
 
 			//	...
 			if(!isCanPushToGithub($remote, $branch) ){
-				continue;
+				break;
 			}
 
 			//	...
 			$result = '';
-			if( self::Git()->Push($remote, $branch, $force, $result) ){
+			if( $io = self::Git()->Push($remote, $branch, $force, $result) ){
 				//	Success
 			}else{
 				//	Failed
@@ -154,6 +154,11 @@ trait CD_2024
 			}
 			//	...
 			echo $result ? "\n{$result}\n": null;
+
+			//	...
+			if( $io === false ){
+				break;
+			}
 		}
 	}
 }
