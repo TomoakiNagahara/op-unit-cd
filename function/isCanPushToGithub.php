@@ -29,6 +29,11 @@ function isCanPushToGithub(string $remote, string $branch) : bool
 	static $_config;
 
 	//	...
+	if( _OP_APP_BRANCH_ == $branch ){
+		return true;
+	}
+
+	//	...
 	if(!$_config ){
 		$_config = OP()->Config('cd');
 	}
