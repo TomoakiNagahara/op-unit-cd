@@ -157,7 +157,7 @@ trait CD_2024
 
 			//	...
 			if( $io === false ){
-				break;
+				exit(__LINE__);
 			}
 		}
 	}
