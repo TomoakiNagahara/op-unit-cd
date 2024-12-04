@@ -33,7 +33,7 @@ $argv5 = $_SERVER['argv'][5] ?? '';
 
 /* @var $output array   */
 /* @var $status integer */
-exec("{$php} {$git_root}/ci.php {$argv1} {$argv2} {$argv3} {$argv4} {$argv5}", $output, $status);
+exec("{$php} {$git_root}/cd.php {$argv1} {$argv2} {$argv3} {$argv4} {$argv5}", $output, $status);
 if( $output ){
 	echo join("\n", $output)."\n";
 }
