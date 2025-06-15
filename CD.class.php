@@ -1,5 +1,5 @@
 <?php
-/** op-unit-cd:/CD.class.php
+/**	op-unit-cd:/CD.class.php
  *
  * @created    2024-04-12
  * @version    1.0
@@ -8,30 +8,30 @@
  * @copyright  Tomoaki Nagahara All right reserved.
  */
 
-/** Declare strict
+/**	Declare strict
  *
  */
 declare(strict_types=1);
 
-/** namespace
+/**	namespace
  *
  */
 namespace OP\UNIT;
 
-/** use
+/**	use
  *
  */
 use OP\OP_CORE;
 use OP\OP_UNIT;
 use OP\IF_UNIT;
 
-/** Include
+/**	Include
  *
  */
 require_once(__DIR__.'/CD.trait.php');
 require_once(__DIR__.'/CD_2024.trait.php');
 
-/** CD
+/**	CD
  *
  * @created    2024-04-12
  * @version    1.0
