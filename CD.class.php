@@ -4,7 +4,7 @@
  * @created    2024-04-12
  * @version    1.0
  * @package    op-unit-cd
- * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @author     Tomoaki Nagahara
  * @copyright  Tomoaki Nagahara All right reserved.
  */
 
@@ -22,7 +22,7 @@ namespace OP\UNIT;
  *
  */
 use OP\OP_CORE;
-use OP\IF_UNIT;
+use OP\IF_CD;
 
 /**	Include
  *
@@ -35,10 +35,10 @@ require_once(__DIR__.'/CD_2024.trait.php');
  * @created    2024-04-12
  * @version    1.0
  * @package    op-unit-cd
- * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @author     Tomoaki Nagahara
  * @copyright  Tomoaki Nagahara All right reserved.
  */
-class CD implements IF_UNIT
+class CD implements IF_CD
 {
 	use OP_CORE, CD\CD, CD\CD_2024;
 }
