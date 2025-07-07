@@ -123,6 +123,15 @@ trait CD_2024
 				exit(__LINE__);
 			}
 		}
+
+		//	op-core
+		chdir(_ROOT_CORE_);
+		foreach( \OP\UNIT\GIT\SubmoduleConfig() as $config ){
+			//	Always return to the core directory each time.
+			chdir(_ROOT_CORE_);
+			//
+			$io = self::_PushGitRepository( $config['path'] );
+		}
 	}
 
 	/** Execute git push
