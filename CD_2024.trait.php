@@ -104,7 +104,7 @@ trait CD_2024
 		}
 	}
 
-	/** Push Git Repository
+	/** Git push by .gitmodules file.
 	 *
 	 */
 	static function PushGitRepository()
@@ -116,44 +116,7 @@ trait CD_2024
 		foreach( PathList() as $path ){
 
 			//	...
-			if(!is_dir($path) ){
-				continue;
-			}
-
-			//	...
-			chdir($path);
-
-			//	...
-			if( file_exists('ci.sh') or file_exists('.ci.sh') ){
-				//	OK
-			}else{
-				continue;
-			}
-
-			//	...
-			$remote = OP()->Request('remote') ?? 'origin';
-			$branch = OP()->Request('branch') ?? self::Git()->Branch()->Current();
-			$force  = OP()->Request('force' ) ?  true: false;
-
-			//	...
-			if(!isCanPushToGithub($remote, $branch) ){
-				break;
-			}
-
-			//	...
-			$result = '';
-			if( $io = self::Git()->Push($remote, $branch, $force, $result) ){
-				//	Success
-			}else{
-				//	Failed
-				if( strpos($result, "[rejected]        {$branch} -> {$branch} (non-fast-forward)") ){
-					//	rejected
-					$path   = OP()->MetaPath($path);
-					$result = "{$path} [rejected] {$branch} -> {$branch} (non-fast-forward)";
-				}
-			}
-			//	...
-			echo $result ? "\n{$result}\n": null;
+			$io = self::_PushGitRepository($path);
 
 			//	...
 			if( $io === false ){
