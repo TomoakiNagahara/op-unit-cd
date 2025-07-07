@@ -124,4 +124,59 @@ trait CD_2024
 			}
 		}
 	}
+
+	/** Execute git push
+	 *
+	 * @created    2025-07-07
+	 * @param      string     $path
+	 * @return     bool       $io
+	 */
+	static private function _PushGitRepository( string $path ) : bool
+	{
+		//	Check if directory.
+		if(!is_dir($path) ){
+			//	Not directory.
+			return false;
+		}
+
+		//	...
+		chdir($path);
+
+		//	...
+		if( file_exists('ci.sh') or file_exists('.ci.sh') ){
+			//	OK
+		}else{
+			OP()->Error('`ci.sh` was not found: ' . OP()->Path(getcwd()));
+			return false;
+		}
+
+		//	...
+		$remote = OP()->Request('remote') ?? 'origin';
+		$branch = OP()->Request('branch') ?? self::Git()->Branch()->Current();
+		$force  = OP()->Request('force' ) ?  true: false;
+
+		//	...
+		if(!isCanPushToGithub($remote, $branch) ){
+			return false;
+		}
+
+		//	...
+		$result = '';
+		if( $io = self::Git()->Push($remote, $branch, $force, $result) ){
+			//	Success
+		}else{
+			//	Failed
+			if( strpos($result, "[rejected]        {$branch} -> {$branch} (non-fast-forward)") ){
+				//	rejected
+				$path   = OP()->MetaPath($path);
+				$result = "{$path} [rejected] {$branch} -> {$branch} (non-fast-forward)";
+			}
+		}
+
+		//	...
+		echo $result ? "\n{$result}\n": null;
+
+		//	...
+		return $io;
+	} // For git diff solution.
 }
