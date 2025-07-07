@@ -154,6 +154,7 @@ trait CD_2024
 		$remote = OP()->Request('remote') ?? 'origin';
 		$branch = OP()->Request('branch') ?? self::Git()->Branch()->Current();
 		$force  = OP()->Request('force' ) ?  true: false;
+		$force  = false;
 
 		//	...
 		if(!isCanPushToGithub($remote, $branch) ){
