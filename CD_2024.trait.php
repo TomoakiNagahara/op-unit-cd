@@ -169,7 +169,9 @@ trait CD_2024
 			//	Failed
 			if( strpos($result, "[rejected]        {$branch} -> {$branch} (non-fast-forward)") ){
 				//	rejected
-				$path   = OP()->MetaPath($path);
+				if( $path[0] === '/' ){
+					$path = \OP\CompressPath($path);
+				}
 				$result = "{$path} [rejected] {$branch} -> {$branch} (non-fast-forward)";
 			}
 		}
