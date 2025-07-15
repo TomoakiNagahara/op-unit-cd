@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace OP\UNIT\CD;
 
 //	...
-$git_root = OP()->MetaPath('git:/');
+$git_root = OP()->Path('git:/');
 
 //	...
 $_list[] = $git_root.'asset/core/';

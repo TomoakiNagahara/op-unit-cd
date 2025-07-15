@@ -41,7 +41,7 @@ trait CD_2023
 	static function Auto()
 	{
 		//	...
-		$git_root = OP()->MetaPath('git:/');
+		$git_root = OP()->Path('git:/');
 
 		//	core
 		chdir( $git_root.'asset/core/' );
@@ -231,7 +231,7 @@ trait CD_2023
 
 		//	...
 		if( $_display ){
-			$meta_path = OP()->MetaPath( getcwd() );
+			$meta_path = OP()->Path( getcwd() );
 			echo "{$meta_path} - {$message}\n";
 		}
 	}

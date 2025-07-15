@@ -69,7 +69,7 @@ trait CD_2024
 
 			/*
 			//	...
-			$meta_path = OP()->MetaPath($path);
+			$meta_path = OP()->Path($path);
 			*/
 
 			//	...

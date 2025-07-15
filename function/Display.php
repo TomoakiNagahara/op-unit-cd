@@ -39,6 +39,6 @@ function Display($message)
 	}
 
 	//	...
-	$meta_path = OP()->MetaPath( getcwd() );
+	$meta_path = OP()->Path( getcwd() );
 	echo "{$meta_path} - {$message}\n";
 }

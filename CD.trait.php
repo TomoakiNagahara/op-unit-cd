@@ -52,8 +52,8 @@ trait CD
 	static private function _CheckGitCommitId() : bool
 	{
 		//	...
-		if(!$meta_path = OP()->MetaPath( getcwd() ) ){
-			OP()->Notice("MetaPath is return false.");
+		if(!$meta_path = OP()->Path( getcwd() ) ){
+			OP()->Notice("OP()->Path() is return false.");
 			return false;
 		}
 
