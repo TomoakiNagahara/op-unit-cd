@@ -24,6 +24,9 @@ $git_root = OP()->Path('git:/');
 //	...
 $_list[] = $git_root.'asset/core/';
 $_list[] = $git_root.'asset/develop/';
+$_list[] = $git_root.'asset/bootstrap/';
+$_list[] = $git_root.'asset/template/';
+$_list[] = $git_root.'asset/git/';
 
 //	...
 $temp = [
@@ -40,11 +43,6 @@ foreach( $temp as $dir ){
 		$_list[] = $path;
 	}
 }
-
-//	asset
-$_list[] = $git_root.'asset/develop/';
-$_list[] = $git_root.'asset/bootstrap/';
-$_list[] = $git_root.'asset/git/';
 
 //	...
 $_list[] = $git_root;
