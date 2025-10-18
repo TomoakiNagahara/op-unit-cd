@@ -4,7 +4,7 @@
  * @created    2023-01-30
  * @version    1.0
  * @package    op-unit-cd
- * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @author     Tomoaki Nagahara
  * @copyright  Tomoaki Nagahara All right reserved.
  */
 
@@ -20,6 +20,11 @@ namespace OP;
 
 /* @var $ci \OP\UNIT\CI\CI_Config */
 $ci = OP::Unit('CI')::Config();
+
+//	Include sub directory files.
+foreach( glob(__DIR__.'/CD/*.php') as $path ){
+	include($path);
+}
 
 //	Auto
 $args   = null;
