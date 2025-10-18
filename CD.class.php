@@ -23,6 +23,7 @@ namespace OP\UNIT;
  */
 use OP\OP_CORE;
 use OP\IF_CD;
+use OP\OP_CI;
 
 /**	Include
  *
@@ -41,4 +42,5 @@ require_once(__DIR__.'/CD_2024.trait.php');
 class CD implements IF_CD
 {
 	use OP_CORE, CD\CD, CD\CD_2024;
+	use OP_CI;
 }
