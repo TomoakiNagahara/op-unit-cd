@@ -82,6 +82,9 @@ trait CD
 			return false;
 		}
 
+		//	Why does it include a line break?
+		$commit_id_saved = trim($commit_id_saved);
+
 		//	...
 		if( $commit_id_saved !== $commit_id ){
 			OP()->Notice("Does not match commit id. ({$meta_path}, {$file_name}={$commit_id_saved}, {$branch}={$commit_id})");
