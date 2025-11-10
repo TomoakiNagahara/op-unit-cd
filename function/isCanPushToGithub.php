@@ -55,12 +55,17 @@ function isCanPushToGithub(string $remote, string $branch) : bool
 	}
 
 	//	...
-	echo "\n";
-	echo "PUSH IS BLOCKED\n";
-	echo "Remote: {$remote}\n";
-	echo "Branch: {$branch}\n";
-	echo "URL: {$url}\n";
-	echo "\n";
+	echo <<<_EOT_
+
+	PUSH IS BLOCKED
+	Remote: {$remote}
+	Branch: {$branch}
+	URL: {$url}
+
+	The repositories that can be pushed to are restricted in "asset/unit/cd/config.php".
+	You can create "asset/config/cd.php" and add the branch names you want to allow pushing to.
+\n
+_EOT_;
 
 	//	...
 	return false;
