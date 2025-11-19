@@ -55,6 +55,7 @@ function isCanPushToGithub(string $remote, string $branch) : bool
 	}
 
 	//	...
+	echo PHP_EOL.getcwd().PHP_EOL;
 	echo <<<_EOT_
 
 	PUSH IS BLOCKED
