@@ -218,6 +218,12 @@ trait CD_2024
 		//	...
 		chdir($path);
 
+		//	Check if branch name
+		if( OP()->Unit()->Git()->Branch()->Current() === 'local' ){
+			echo "\n * SKIP: Current branch name is local: {$path} \n\n";
+			return true;
+		}
+
 		//	...
 		if( file_exists('ci.sh') or file_exists('.ci.sh') ){
 			//	OK
