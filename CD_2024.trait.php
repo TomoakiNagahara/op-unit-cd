@@ -67,6 +67,11 @@ trait CD_2024
 			//	...
 			chdir($path);
 
+			//	Check if branch name
+			if( OP()->Unit()->Git()->Branch()->Current() === 'local' ){
+				return;
+			}
+
 			/*
 			//	...
 			$meta_path = OP()->Path($path);
