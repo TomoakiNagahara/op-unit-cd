@@ -156,6 +156,35 @@ trait CD_2024
 			}
 		}
 
+		//	Non git managed submodules
+		foreach( glob(_ROOT_ASSET_.'/config/submodule/*/*.php') as $glob ){
+			//	Init
+			if(!chdir(_ROOT_ASSET_) ){ continue; }
+			$temp = explode('/', $glob);
+			$name = array_pop($temp);
+			$type = array_pop($temp);
+			$name = substr($name, 0, -4);
+			$path = "{$type}/{$name}/";
+			//	Check
+			if(!file_exists($path) ){ continue; }
+			if(!is_dir($path)      ){ continue; }
+			if(!chdir($path)       ){ continue; }
+			//	Nested submodules
+			if( file_exists('.gitmodules') ){
+				foreach( \OP\UNIT\GIT\SubmoduleConfig() as $config ){
+					if(!chdir(_ROOT_ASSET_.$path) ){ continue; }
+					if(!self::_PushGitRepository( $config['path'] ) ){
+						exit(__LINE__);
+					}
+				}
+			}
+			//	Submodule
+			if(!chdir(_ROOT_ASSET_) ){ continue; }
+			if(!self::_PushGitRepository( $path ) ){
+				exit(__LINE__);
+			}
+		}
+
 		//	Skeleton
 		if(!self::_PushGitRepository( _ROOT_GIT_ ) ){
 			exit(__LINE__);
