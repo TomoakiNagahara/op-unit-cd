@@ -220,6 +220,7 @@ trait CD_2024
 
 		//	Check if branch name
 		if( OP()->Unit()->Git()->Branch()->Current() === 'local' ){
+			$path = OP()->Path(getcwd());
 			echo "\n * SKIP: Current branch name is local: {$path} \n\n";
 			return true;
 		}
