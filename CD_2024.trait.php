@@ -159,12 +159,21 @@ trait CD_2024
 		//	Non git managed submodules
 		foreach( glob(_ROOT_ASSET_.'/config/submodule/*/*.php') as $glob ){
 			//	Init
-			if(!chdir(_ROOT_ASSET_) ){ continue; }
+			if(!chdir(_ROOT_GIT_) ){ continue; }
 			$temp = explode('/', $glob);
 			$name = array_pop($temp);
 			$type = array_pop($temp);
 			$name = substr($name, 0, -4);
-			$path = "{$type}/{$name}/";
+			$config = (function($glob){ return include($glob); })($glob);
+			//	path
+			switch( $type ){
+				case 'public_html':
+					$path = $config['path'] ?? $name;
+					break;
+				default:
+					$path = $config['path'] ?? "asset/{$type}/{$name}/";
+				break;
+			}
 			//	Check
 			if(!file_exists($path) ){ continue; }
 			if(!is_dir($path)      ){ continue; }
@@ -172,14 +181,15 @@ trait CD_2024
 			//	Nested submodules
 			if( file_exists('.gitmodules') ){
 				foreach( \OP\UNIT\GIT\SubmoduleConfig() as $config ){
-					if(!chdir(_ROOT_ASSET_.$path) ){ continue; }
+					if(!chdir(_ROOT_GIT_.$path) ){ continue; }
 					if(!self::_PushGitRepository( $config['path'] ) ){
 						exit(__LINE__);
 					}
 				}
 			}
-			//	Submodule
-			if(!chdir(_ROOT_ASSET_) ){ continue; }
+
+			//	Push
+			if(!chdir(_ROOT_GIT_) ){ continue; }
 			if(!self::_PushGitRepository( $path ) ){
 				exit(__LINE__);
 			}
