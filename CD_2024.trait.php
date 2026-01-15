@@ -44,7 +44,7 @@ trait CD_2024
 	static function Auto()
 	{
 		try{
-			self::CheckGitCommitId();
+		//	self::CheckGitCommitId();
 			self::PushGitRepository();
 		}catch( \Throwable $e ){
 			OP()->Notice($e);
