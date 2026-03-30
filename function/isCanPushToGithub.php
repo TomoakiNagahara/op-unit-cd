@@ -38,8 +38,11 @@ function isCanPushToGithub(string $remote, string $branch) : bool
 		$_config = OP()->Config('cd');
 	}
 
+	//	Escape
+	$remote = escapeshellarg($remote);
+
 	//	...
-	$url = ' '.trim(`git remote get-url {$remote}` ?? '');
+	$url = ' '.trim( shell_exec("git remote get-url {$remote}") ?? '');
 
 	//	If the PUSH destination URL is GitHub.
 	if( strpos($url, 'git@github.com:') or strpos($url, 'https://github.com/') ){
