@@ -1,24 +1,23 @@
 <?php
-/** op-unit-cd:/index.php
+/**	op-unit-cd:/index.php
  *
  * @created    2023-01-30
- * @version    1.0
+ * @license    Apache-2.0
  * @package    op-unit-cd
- * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
- * @copyright  Tomoaki Nagahara All right reserved.
+ * @copyright  Tomoaki Nagahara
  */
 
- /** Declare strict
+/**	Declare strict type
  *
  */
 declare(strict_types=1);
 
-/** namespace
+/**	Namespace
  *
  */
 namespace OP;
 
-/** Include
+/**	Include
  *
  */
 include(__DIR__.'/CD.class.php');
