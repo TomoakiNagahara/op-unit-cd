@@ -1,16 +1,18 @@
 <?php
-/** op-unit-cd:/config.php
- *
- * Default config file.
+/**	op-unit-cd:/config.php
  *
  * @created    2023-01-30
- * @version    1.0
+ * @license    Apache-2.0
  * @package    op-unit-cd
- * @author     Tomoaki Nagahara
- * @copyright  Tomoaki Nagahara All right reserved.
+ * @copyright  Tomoaki Nagahara
  */
 
-/**	namespace
+/**	Declare strict type
+ *
+ */
+declare(strict_types=1);
+
+/**	Namespace
  *
  */
 namespace OP\UNIT\CD;
