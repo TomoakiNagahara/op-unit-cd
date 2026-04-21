@@ -46,6 +46,32 @@ trait CD_2024
 		try{
 		//	self::CheckGitCommitId();
 			self::PushGitRepository();
+
+			//	More delivery options.
+			switch( OP()->Request('cd') ){
+				case 'ftp':
+					//	Get config.
+					if(!$config = OP()->Config('cd')['ftp'] ){
+						D('FTP config is empty: config > cd > ftp');
+						return;
+					}
+					//	FTP
+					include(__DIR__.'/FTP.class.php');
+					FTP::Auto($config);
+					break;
+
+				case 'rsync':
+					//	Get config.
+					if(!$config = OP()->Config('cd')['rsync'] ){
+						D('Rsync config is empty: config > cd > rsync');
+						return;
+					}
+					//	Rsync
+					include(__DIR__.'/Rsync.class.php');
+					Rsync::Auto($config);
+					break;
+			}
+
 		}catch( \Throwable $e ){
 			OP()->Notice($e);
 		}
