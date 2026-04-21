@@ -1,40 +1,35 @@
 <?php
-/** op-unit-cd:/CD_2024.trait.php
+/**	op-unit-cd:/CD_2024.trait.php
  *
  * @created    2024-04-12
- * @version    1.0
+ * @license    Apache-2.0
  * @package    op-unit-cd
- * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
- * @copyright  Tomoaki Nagahara All right reserved.
+ * @copyright  Tomoaki Nagahara
  */
 
-/** Declare strict
+/**	Declare strict type
  *
  */
 declare(strict_types=1);
 
-/** namespace
+/**	Namespace
  *
  */
 namespace OP\UNIT\CD;
 
-/** use
+/**	Use
  *
  */
 
-/** include
+/**	Include
  *
  */
 require_once(__DIR__.'/function/Display.php');
 require_once(__DIR__.'/function/PathList.php');
 
-/** CD_2024
+/**	CD_2024
  *
  * @created    2024-04-12
- * @version    1.0
- * @package    op-unit-cd
- * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
- * @copyright  Tomoaki Nagahara All right reserved.
  */
 trait CD_2024
 {
