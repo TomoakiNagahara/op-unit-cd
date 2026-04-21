@@ -33,6 +33,11 @@ function isCanPushToGithub(string $remote, string $branch) : bool
 		return true;
 	}
 
+	//	Check if year number.
+	if( preg_match('/^20[2,3]\d$/', $branch) ){
+		return true;
+	}
+
 	//	...
 	if(!$_config ){
 		$_config = OP()->Config('cd');
