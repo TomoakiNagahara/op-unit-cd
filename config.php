@@ -23,4 +23,14 @@ return [
 		'php70',
 		'main',
 	],
+	'ftp' => [
+		/*
+		'host'     => 'localhost',
+		'user'     => '',
+		'password' =>  null,
+		'passive'  =>  true,
+		'local'    =>  OP()->Path('git:/'),
+		'remote'   => '/var/www/htdocs/',
+		*/
+	],
 ];
