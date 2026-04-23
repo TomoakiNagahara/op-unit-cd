@@ -73,4 +73,28 @@ class FTP implements IF_CD
 	//	D($comand);
 		passthru($comand);
 	}
+
+	/**	Get password from user input.
+	 *
+	 * @created    2026-04-19
+	 * @return     string
+	 */
+	static function GetPassword() : string
+	{
+		//	Output message.
+		fwrite(STDOUT, 'FTP PASSWORD: ');
+
+		//	Input echo is off.
+		system('stty -echo');
+
+		//	Get password.
+		$password = trim(fgets(STDIN));
+
+		//	Input echo is on.
+		system('stty echo');
+		fwrite(STDOUT, PHP_EOL);
+
+		//	...
+		return $password;
+	}
 }
