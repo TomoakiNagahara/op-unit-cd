@@ -42,7 +42,7 @@ class FTP implements IF_CD
 	 */
 	static function Auto( array $config )
 	{
-		//	...
+		//	Init
 		$host     = $config['host'];
 		$user     = $config['user'];
 		$password = $config['password'];
@@ -50,21 +50,27 @@ class FTP implements IF_CD
 		$local    = $config['local'];
 		$remote   = $config['remote'];
 
+		//	If a path is specified.
+		if( $path = OP()->Request('path') ){
+			$local  = rtrim($local, '/').'/'.$path;
+			$remote = rtrim($remote,'/').'/'.$path;
+		}
+
 		//	Check password exists.
 		if(!$password ){
 			$password = self::GetPassword();
 		}
 
-		//	...
+		//	Escape
 		$host     = escapeshellarg($host);
 		$local    = escapeshellarg($local);
 		$remote   = escapeshellarg($remote);
 		$login    = escapeshellarg("{$user},{$password}");
 
-		//	...
-		$exclude = '--exclude-glob=.* --exclude-glob=_* --exclude=.git';
+		//	Exclude
+		$exclude = '--include-glob=.htaccess --exclude-glob=.* --exclude-glob=_* --exclude=.git';
 
-		//	...
+		//	Command
 		$commands[] = $passive ? 'set ftp:passive-mode on': 'set ftp:passive-mode off';
 		$commands[] = "mirror -R --parallel=4 --dereference {$exclude} {$local} {$remote}";
 		$commands[] = "quit";
